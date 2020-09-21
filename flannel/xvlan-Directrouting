@@ -1,0 +1,11 @@
+[root@master ~]# kubectl get configmap -n kube-system
+NAME                                 DATA      AGE
+kube-flannel-cfg                     2         22d
+[root@master flannel]# kubectl edit configmap kube-flannel-cfg -n kube-system
+{
+      "Network": "10.244.0.0/16",
+      "Backend": {
+        "Type": "vxlan",
+        "Directrouting": true #加一行这个
+      }
+    }
