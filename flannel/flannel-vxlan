@@ -1,0 +1,20 @@
+[root@k8s-master-66 ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    100    0        0 eth0
+10.244.0.0      0.0.0.0         255.255.255.0   U     0      0        0 cni0
+10.244.1.0      10.244.1.0      255.255.255.0   UG    0      0        0 flannel.1
+10.244.2.0      10.244.2.0      255.255.255.0   UG    0      0        0 flannel.1
+10.244.3.0      10.244.3.0      255.255.255.0   UG    0      0        0 flannel.1
+172.16.0.0      0.0.0.0         255.255.255.0   U     100    0        0 eth0
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+
+[root@k8s-master-66 ~]# ip neighbour show dev flannel.1
+10.244.3.0 lladdr d6:e7:24:a5:a9:4f PERMANENT
+10.244.2.0 lladdr a6:6c:41:22:b3:3c PERMANENT
+10.244.1.0 lladdr 76:7d:2c:59:0b:87 PERMANENT
+
+[root@k8s-master-66 ~]# bridge fdb show  |grep dst
+76:7d:2c:59:0b:87 dev flannel.1 dst 172.16.0.67 self permanent
+d6:e7:24:a5:a9:4f dev flannel.1 dst 172.16.0.69 self permanent
+a6:6c:41:22:b3:3c dev flannel.1 dst 172.16.0.68 self permanent
