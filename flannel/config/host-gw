@@ -8,3 +8,5 @@ kube-flannel-cfg                     2         22d
         "Type": "host-gw"
       }
     }
+
+[root@master flannel]# reboot
