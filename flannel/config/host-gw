@@ -9,4 +9,4 @@ kube-flannel-cfg                     2         22d
       }
     }
 
-[root@master flannel]# reboot
+[root@master flannel]# reboot (需要重启，否则flannel.1的网卡一直存在)
